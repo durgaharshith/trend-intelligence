@@ -33,9 +33,7 @@ services:
         scope: run
       - key: FRONTEND_URL
         value: https://your-vercel-domain.vercel.app
+      - key: PYTHON_VERSION
+        value: 3.11
     healthCheckPath: /health
     autoDeploy: true
-
-env:
-  - key: PYTHON_VERSION
-    value: 3.11
