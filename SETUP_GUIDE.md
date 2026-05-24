@@ -6,7 +6,9 @@
 - Python 3.11+
 - Node.js 18+
 - Git
-- Reddit OAuth credentials
+- GitHub developer token
+- NewsAPI key
+- Dev.to API key
 - Groq API key
 - Upstash Redis account
 - Supabase PostgreSQL account
@@ -15,7 +17,7 @@
 
 ```bash
 # Clone or navigate to project
-cd trends
+cd trend-intelligence
 
 # Create virtual environment
 python -m venv venv
@@ -64,16 +66,19 @@ npm run dev
 
 ## 🔧 Configuration
 
-### Reddit OAuth Setup
+### GitHub, NewsAPI & Dev.to Setup
 
-1. Go to https://www.reddit.com/prefs/apps
-2. Create new app (choose "script" type)
-3. Note your `client_id` and `client_secret`
-4. Add to `.env`:
+1. **GitHub Token:** Create a GitHub personal access token (classic or fine-grained) at [github.com/settings/tokens](https://github.com/settings/tokens) and add it to `.env`:
+   ```env
+   GITHUB_TOKEN=ghp_your_personal_access_token
    ```
-   REDDIT_CLIENT_ID=your_id
-   REDDIT_CLIENT_SECRET=your_secret
-   REDDIT_USER_AGENT=TrendAgent/1.0 (by /u/yourname)
+2. **NewsAPI Key:** Get a free API key at [newsapi.org](https://newsapi.org/) and add it to `.env`:
+   ```env
+   NEWSAPI_KEY=your_newsapi_key
+   ```
+3. **Dev.to API Key:** Generate an API key in your Dev.to Account Settings and add it to `.env`:
+   ```env
+   DEVTO_API=your_devto_api_key
    ```
 
 ### Groq API Setup
@@ -143,13 +148,7 @@ npm run dev
 2. Create new Web Service on Render
 3. Connect GitHub repository
 4. Select `render.yaml` as build configuration
-5. Add environment variables:
-   - `REDDIT_CLIENT_ID`
-   - `REDDIT_CLIENT_SECRET`
-   - `GROQ_API_KEY`
-   - `REDIS_URL`
-   - `DATABASE_URL`
-   - `ENVIRONMENT=production`
+5. Fill in the values for the prompted environment variables in the Render Dashboard (e.g. `GROQ_API_KEY`, `DATABASE_URL`, `REDIS_URL`, `GITHUB_TOKEN`, `NEWSAPI_KEY`, `DEVTO_API`, `RESEND_API_KEY`, `LANGSEARCH_API_KEY`, `JWT_SECRET`, etc.).
 6. Deploy
 
 ### Deploy to Vercel (Frontend)
@@ -194,7 +193,7 @@ pytest tests/test_services.py::TestRedditClient
 
 ## 📝 Key Features
 
-- ✅ Real-time Reddit monitoring
+- ✅ Real-time Multi-source monitoring (HackerNews, GitHub, Google Trends, NewsAPI, Dev.to)
 - ✅ Semantic clustering with sentence-transformers
 - ✅ AI-powered summaries with Groq
 - ✅ Redis caching and pub/sub
@@ -205,13 +204,10 @@ pytest tests/test_services.py::TestRedditClient
 
 ## 🔮 Next Steps (Phase 2)
 
-- [ ] Multi-source ingestion (HN, Google Trends, YouTube)
 - [ ] Kafka event streaming
-- [ ] Vector database integration
-- [ ] User authentication and alerts
-- [ ] Time-series forecasting
-- [ ] Advanced analytics dashboard
-- [ ] Notification system (email, SMS, Slack)
+- [ ] Vector database integration (Pinecone/Weaviate)
+- [ ] Mobile app (React Native)
+- [ ] Browser extension for trend detection
 
 ## 🆘 Troubleshooting
 
