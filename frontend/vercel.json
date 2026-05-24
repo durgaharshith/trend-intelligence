@@ -1,0 +1,14 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": ".next",
+  "environment": "production",
+  "env": {
+    "NEXT_PUBLIC_API_URL": "@trend_api_url"
+  },
+  "functions": {
+    "api/**": {
+      "memory": 3008,
+      "maxDuration": 60
+    }
+  }
+}

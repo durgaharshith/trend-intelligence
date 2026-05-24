@@ -1,0 +1,41 @@
+services:
+  - type: web
+    name: trend-intelligence-api
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port 8000
+    envVars:
+      - key: ENVIRONMENT
+        value: production
+      - key: GROQ_API_KEY
+        scope: run
+      - key: GITHUB_TOKEN
+        scope: run
+      - key: NEWSAPI_KEY
+        scope: run
+      - key: DEVTO_API
+        scope: run
+      - key: RESEND_API_KEY
+        scope: run
+      - key: RESEND_FROM_EMAIL
+        value: onboarding@resend.dev
+      - key: LANGSEARCH_API_KEY
+        scope: run
+      - key: ADMIN_EMAIL
+        value: durgaharshithpigili@gmail.com
+      - key: JWT_SECRET
+        scope: run
+      - key: INTERNAL_SECRET
+        scope: run
+      - key: REDIS_URL
+        scope: run
+      - key: DATABASE_URL
+        scope: run
+      - key: FRONTEND_URL
+        value: https://your-vercel-domain.vercel.app
+    healthCheckPath: /health
+    autoDeploy: true
+
+env:
+  - key: PYTHON_VERSION
+    value: 3.11
